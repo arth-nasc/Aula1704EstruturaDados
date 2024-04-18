@@ -13,8 +13,9 @@ int main(int argc, char *argv[])  {
 		int dado;
 		struct no *prox;
 	};
-	struct no *p,*r,*lista; //auxiliar a criar nos e descritores
+	struct no *q,*p,*r,*lista; //auxiliar a criar nos e descritores
 	struct descritor *d; 
+	int sn;
 	
 	 //lista LSE vazia
 
@@ -25,47 +26,67 @@ int main(int argc, char *argv[])  {
 	d->f=NULL;
 	d->n=0;
 	
-	/* Nota: sÛ para demonstracao, sera 
-	//campos i,n,f est„o vazios
+	/* Nota: s√≥ para demonstracao, sera 
+	//campos i,n,f est√£o vazios
 	//insercao do primeiro no
 	p=malloc(sizeof(struct no));
 	scanf("%d",&p->dado);
-	p->prox=NULL; // SÛ tem um nÛ por enquanto e "p" sabe a pos. dele
-	d->i=p; // p sabe pÛs
+	p->prox=NULL; // S√≥ tem um n√≥ por enquanto e "p" sabe a pos. dele
+	d->i=p; // p sabe p√≥s
 	d->f=p;
-	d->n=1; // num. do nÛ
+	d->n=1; // num. do n√≥
 	*/
 	
 	//ins. a direita
-	// agora diferentemente da lse simples, o f vai apontar para o novo nÛ.
+	// agora diferentemente da lse simples, o f vai apontar para o novo n√≥.
 	do{
 		
 		//perguntar se a lista esta vazia
 		//se n=0 a lista esta vazia
 		p=malloc(sizeof(struct no));
 		scanf("%d",&p->dado);
-		p->prox=NULL;// SÛ tem um nÛ por enquanto e "p" sabe a pos. dele
+		p->prox=NULL;// S√≥ tem um n√≥ por enquanto e "p" sabe a pos. dele
 		if (d->n=0){
-			d->i=p; // p sabe pÛs.
+			d->i=p; // p sabe p√≥s.
 			d->f=p;
-			d->n=1; // num. do nÛ
+			d->n=1; // num. do n√≥
 		}
 		else{
-			q=d->f; //quer que q aponte para o mesmo nÛ que o d->f aponta.
-			q->prox=p; // p È o ultimo nÛ , e o prox de q agora aponta para ele
-			d->f=p; // p È o ultimo nÛ ent„o f agora aponta para ele inves de q (era o unico item na lista).
-			d->n++; // n È incrementado j· que um nÛ foi adicionado, agora tem 2.
-			//note que o n n„o tem nada a ver com os ponteiros i e f, ent„o n„o use ele na remoÁ„o de nÛs.
+			q=d->f; //quer que q aponte para o mesmo n√≥ que o d->f aponta.
+			q->prox=p; // p √© o ultimo n√≥ , e o prox de q agora aponta para ele
+			d->f=p; // p √© o ultimo n√≥ ent√£o f agora aponta para ele inves de q (era o unico item na lista).
+			d->n++; // n √© incrementado j√° que um n√≥ foi adicionado, agora tem 2.
+			//note que o n n√£o tem nada a ver com os ponteiros i e f, ent√£o n√£o use ele na remo√ß√£o de n√≥s.
 			
 		}
 		
 		printf("Deseja inserir outro no a direita? 0-nao 1-sim");
-		scanf("%d",&sn)
+		scanf("%d",&sn);
 	}while(sn==1);
 	
 
+	/*
+		Aula 17/04
+	Lista com Descritor
+	Resolve problemas de performance em listas mto grandes na insercao √† 
+	direita e intermed. (Se por exemplo uma lista com milh√µes de items, a
+	contagem de items da lista & ponteiros levar√° mto tempo.)
+	- tem descritores.
+	- normalmente tem campo i n f 
+	i: tem funcao simular a "lista" aponta para o come√ßo.
+	n: numero do n√≥? √© incrementado quando um novo n√≥ √© adicionado.
+	f: aponta para o final.
+	
+	LISTA DUPLAMENTE ENCADEADA
+	tem descritor mas os n√≥s da lsita n√£o s√£o struct n√≥s de 2 campos como 
+	a da LSE s√£o n√≥s com 3 campos: 
+	- a informa√ß√£o (trabalhamos com o int dado na struct no na aula)
+	-*prev ou *esq (para o n√≥ de tr√°s) 
+	-*next ou *dir (igual *prox))
+
+	*/
 	
 	
-	
-	return 0
+	return 0;
+
 }
